@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/welcome', function () {
+    return view('welcome');
 });
 
 Auth::routes();
 
+Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/courses/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('courses.show');

@@ -44,11 +44,9 @@
                                     Courses
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
+                                    @foreach($courses as $course)
+                                        <a class="dropdown-item" href="/courses/{{ $course->id }}">{{ $course->name }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </li>
