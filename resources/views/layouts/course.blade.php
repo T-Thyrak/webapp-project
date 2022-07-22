@@ -74,7 +74,31 @@
                     <div class="center-line">
                         <a href="#" class="scroll-icon"><i class="fas fa-caret-up"></i></a>
                     </div>
-                    <div class="row row-2">
+                    @foreach ($lessons as $lesson)
+                        <div class="row row-2">
+                            <section>
+                                @if ($lesson->type == 'video')
+                                    <i class="icon fa-solid fa-video"></i>
+                                @elseif ($lesson->type == 'text')
+                                    <i class="icon fa-solid fa-pen-ruler"></i>
+                                @elseif ($lesson->type == 'quiz')
+                                    <i class="icon fa-solid fa-clipboard-list"></i>
+                                @elseif ($lesson->type == 'course_final')
+                                    <i class="icon fa-solid fa-certificate"></i>
+                                @endif
+
+                                <div class="details">
+                                    <a class="title nav-link" href="{{
+                                        route('courses.show', [
+                                            'course' => $course->slug,
+                                            'lesson' => $lesson->slug,
+                                        ])
+                                    }}">{{ $lesson->title }}</a>
+                                </div>
+                            </section>
+                        </div>
+                    @endforeach
+                    {{-- <div class="row row-2">
                         <section>
                             <i class="icon fas fa-home"></i>
                             <div class="details">
@@ -87,7 +111,7 @@
                                 <i>- Someone famous</i>
                             </div>
                         </section>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

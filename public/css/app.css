@@ -10932,6 +10932,12 @@ textarea.form-control-lg {
   margin-bottom: 30px;
 }
 
+.course-h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
 .course-text {
   font-size: 1.2rem;
   line-height: 1.3;

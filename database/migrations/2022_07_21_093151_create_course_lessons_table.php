@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('course_lessons', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
-            $table->string('link');
             $table->string('title');
             $table->enum('type', ['video', 'text', 'quiz', 'course_final']);
+            $table->string('slug');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('restrict')->onUpdate('restrict');
             // $table->timestamps();
         });
