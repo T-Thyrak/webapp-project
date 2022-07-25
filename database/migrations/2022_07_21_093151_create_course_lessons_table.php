@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('course_id');
             $table->string('title');
+            $table->string('description');
             $table->enum('type', ['video', 'text', 'quiz', 'course_final']);
+            $table->string('video_link')->nullable();
             $table->string('slug');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('restrict')->onUpdate('restrict');
             // $table->timestamps();

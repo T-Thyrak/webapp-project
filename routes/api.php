@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route::middleware('json')->get('/checkquiz', [App\Http\Controllers\QuizController::class, 'checkQuiz']);
+Route::apiResource('checkQuiz', App\Http\Controllers\Api\QuizChecker::class)->names([
+    'store' => 'checkQuiz.check',
+]);

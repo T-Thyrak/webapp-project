@@ -10912,6 +10912,10 @@ textarea.form-control-lg {
   border-bottom: 1px solid #e5e5e5;
 }
 
+.course-rounded {
+  border-radius: 30px;
+}
+
 .course-header-image {
   margin-bottom: 30px;
 }
