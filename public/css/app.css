@@ -11041,6 +11041,10 @@ textarea.form-control-lg {
   left: -60px;
 }
 
+.row-2 section .icon.inactive {
+  color: #999;
+}
+
 .row section .details,
 .row section .bottom {
   display: flex;

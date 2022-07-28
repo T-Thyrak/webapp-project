@@ -13,12 +13,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 // Route::middleware('json')->get('/checkquiz', [App\Http\Controllers\QuizController::class, 'checkQuiz']);
 Route::apiResource('checkQuiz', App\Http\Controllers\Api\QuizChecker::class)->names([
     'store' => 'checkQuiz.check',
 ]);
+
+Route::apiResource('userMedal', App\Http\Controllers\Api\UserMedalController::class)->names([
+    'store' => 'userMedal.check',
+]);
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});

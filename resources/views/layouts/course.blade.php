@@ -21,6 +21,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('css/course.css') }}" rel="stylesheet"> --}}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="course-viewport">
@@ -138,6 +141,23 @@
                             </section>
                         </div>
                     @endforeach
+                    <div class="row row-2">
+                        <section>
+                            @if ($allCompleted)
+                                <i class="icon fa-solid fa-certificate"></i>
+                                <div class="details">
+                                    <a class="title nav-link" href="javascript:syncMedalWrapper()">Click to sync your medal!</a>
+                                </div>
+                                <p>Thank you for completing the course about <b>{{ $lesson->title }}</b>!</p>
+                            @else
+                                <i class="icon fa-solid fa-certificate inactive"></i>
+                                <div class="details">
+                                    <p class="title nav-link">You have not yet completed all lessons.</p>
+                                </div>
+                                <p>Come back later when you have completed all lessons to receive your medal!</p>
+                            @endif
+                        </section>
+                    </div>
                     {{-- <div class="row row-2">
                         <section>
                             <i class="icon fas fa-home"></i>
@@ -156,5 +176,52 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function syncMedal() {
+            var resp = false;
+
+            var settings = {
+                "async": false,
+                "url": "{{ route('userMedal.check') }}",
+                "method": "POST",
+                "data": JSON.stringify({
+                    "user_id": {{ Auth::user()->id }},
+                }),
+                "headers": {
+                    "Content-Type": "application/json",
+                },
+                "success": (response) => {
+                    if (response.status == 'success') {
+                        resp = true;
+                    }
+                }
+            }
+
+            $.ajax(settings);
+
+            return resp;
+        }
+
+        function syncMedalWrapper() {
+            if (syncMedal()) {
+                Swal.fire({
+                    title: "Synced medal!",
+                    text: "You have successfully synced your medal!",
+                    icon: "success",
+                    timer: 2000,
+                });
+            } else {
+                Swal.fire({
+                    title: "Failed to sync medal!",
+                    text: "You have not yet completed all lessons.",
+                    icon: "error",
+                    timer: 2000,
+                });
+            }
+        }
+
+        syncMedal();
+    </script>
 </body>
 </html>
