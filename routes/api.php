@@ -22,6 +22,10 @@ Route::apiResource('userMedal', App\Http\Controllers\Api\UserMedalController::cl
     'store' => 'userMedal.check',
 ]);
 
+Route::apiResource('userInfo', App\Http\Controllers\Api\UserInfoController::class)->names([
+    'update' => 'userInfo.update',
+]);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

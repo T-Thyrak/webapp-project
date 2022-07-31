@@ -9,9 +9,13 @@
 
 @import 'course';
 
-* {
+*:not(code) {
     font-family: 'Nunito', 'Comfortaa', 'Ibarra Real Nova', sans-serif;
     box-sizing: border-box;
+}
+
+code * {
+    font-family: "Victor Mono", monospace;
 }
 
 .mx-10 {

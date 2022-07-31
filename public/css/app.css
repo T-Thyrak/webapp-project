@@ -11106,9 +11106,13 @@ textarea.form-control-lg {
     margin: 10px 0;
   }
 }
-* {
+*:not(code) {
   font-family: "Nunito", "Comfortaa", "Ibarra Real Nova", sans-serif;
   box-sizing: border-box;
+}
+
+code * {
+  font-family: "Victor Mono", monospace;
 }
 
 .mx-10 {

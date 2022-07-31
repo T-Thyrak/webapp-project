@@ -23,7 +23,7 @@
         curl_close($curl);
     @endphp
         {!!
-            app(Spatie\LaravelMarkdown\MarkdownRenderer::class)->toHtml($response);
+            Str::markdown($response);
         !!}
     @elseif ($lesson->type == 'video')
         <div class="d-flex align-items-center justify-content-center">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="card-body">
                     @if ($quizzes[$i]->attachment != null)
-                        <img src="{{$quizzes[$i]->attachment}}" width="640" height="480">
+                        <img src="{{$quizzes[$i]->attachment}}" width="640" height="480" class="mb-3">
                     @endif
                     @if ($quizzes[$i]->type == 'multiple')
                         <form>
@@ -243,7 +243,7 @@
                 </div>
                 <div class="card-body">
                     @if ($quizzes[$i]->attachment != null)
-                        <img src="{{$quizzes[$i]->attachment}}" width="640" height="480">
+                        <img src="{{$quizzes[$i]->attachment}}" width="640" height="480" class="mb-3">
                     @endif
                     @if ($quizzes[$i]->type == 'multiple')
                         <form>
