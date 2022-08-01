@@ -11,7 +11,11 @@ use App\Models\UserProgress;
 class CourseController extends Controller
 {
     public function show(Course $course, $lessonSlug = "") {
-        $courses = Course::all();
+        $courses = Course::where("under_construction", false)->get();
+
+        if ($course->under_construction) {
+            abort(401);
+        }
 
         if ($lessonSlug !== "") {
             // echo 'huh';
@@ -29,6 +33,7 @@ class CourseController extends Controller
                 abort(404);
             }
         } else {
+
             // echo $lessonSlug;
             $lessons = CourseLesson::when(request('course_id'), function ($query) {
                 return $query->where('course_id', request('course_id'));

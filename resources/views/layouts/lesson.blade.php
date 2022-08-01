@@ -120,5 +120,10 @@
                 elem.parentNode.remove();
             });
         }
+
+        var tables = document.getElementsByTagName('table');
+        for (let table of tables) {
+            table.classList.add('table', 'table-striped', 'table-bordered', 'table-hover');
+        }
     </script>
 </body>

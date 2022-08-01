@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->string('slug');
+            $table->boolean('under_construction')->default(true);
             // $table->timestamps();
         });
     }

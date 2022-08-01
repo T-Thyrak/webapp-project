@@ -232,7 +232,7 @@
         </script>
     @else
         @php
-            $quizzes = App::make('App\Http\Controllers\QuizController')->randomQuiz($course->id, 15);
+            $quizzes = App::make('App\Http\Controllers\QuizController')->randomQuiz($course->id, -1, 15);
         @endphp
 
         @for ($i = 0; $i < count($quizzes); $i++)
