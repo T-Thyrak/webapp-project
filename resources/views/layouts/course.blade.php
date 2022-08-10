@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,45 +17,54 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     {{-- <link href="{{ asset('css/course.css') }}" rel="stylesheet"> --}}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+
 <body>
     <div class="course-viewport">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <div class="mx-2">
-                    <img src="{{asset('images/logo.png')}}" alt="SmartCut Logo" width="64" height="64">
+                    <img src="{{ asset('images/logo.png') }}" alt="SmartCut Logo" width="64" height="64">
                 </div>
                 <a class="navbar-brand" href="/">Smartcut</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
 
-                    <li class="nav-item">
-                        {{-- dropdown:courses --}}
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Courses
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                @foreach($courses as $course)
-                                    <a class="dropdown-item" href="/courses/{{ $course->slug }}">{{ $course->name }}</a>
-                                @endforeach
+                        <li class="nav-item border">
+                            {{-- dropdown:courses --}}
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Courses
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    @foreach ($courses as $course)
+                                        <a class="dropdown-item"
+                                            href="/courses/{{ $course->slug }}">{{ $course->name }}</a>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                            {{-- <a href="{{ route('course.allCourses') }}">Courses</a> --}}
+                        </li>
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
@@ -69,7 +79,8 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -81,7 +92,8 @@
                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -96,7 +108,8 @@
             <div class="course-header">
                 <div class="course-header-image">
                     <div class="container d-flex align-items-center justify-content-center">
-                        <div class="course-header-image-inner"><img class="course-rounded" src="{{ $course->image }}" alt="{{ $course->name }}"></div>
+                        <div class="course-header-image-inner"><img class="course-rounded" src="{{ $course->image }}"
+                                alt="{{ $course->name }}"></div>
                     </div>
                 </div>
                 <div class="course-header-title">
@@ -132,12 +145,11 @@
                                 @endif
 
                                 <div class="details">
-                                    <a class="title nav-link" href="{{
-                                        route('courses.show', [
+                                    <a class="title nav-link"
+                                        href="{{ route('courses.show', [
                                             'course' => $course->slug,
                                             'lesson' => $lesson->slug,
-                                        ])
-                                    }}">{{ $lesson->title }}</a>
+                                        ]) }}">{{ $lesson->title }}</a>
                                 </div>
 
                                 <p>{{ $lesson->description }}</p>
@@ -149,7 +161,8 @@
                             @if ($allCompleted)
                                 <i class="icon fa-solid fa-certificate"></i>
                                 <div class="details">
-                                    <a class="title nav-link" href="javascript:syncMedalWrapper()">Click to sync your medal!</a>
+                                    <a class="title nav-link" href="javascript:syncMedalWrapper()">Click to sync your
+                                        medal!</a>
                                 </div>
                                 <p>Thank you for completing the course about <b>{{ $lesson->title }}</b>!</p>
                             @else
@@ -227,4 +240,5 @@
         syncMedal();
     </script>
 </body>
+
 </html>
