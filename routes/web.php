@@ -25,3 +25,7 @@ Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('i
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/courses/{course:slug}/{lesson:slug?}', [App\Http\Controllers\CourseController::class, 'show'])->name('courses.show')->middleware('auth');
+
+Route::get('/courses', function(){
+    return view('courses.allCourse');
+})->name('course.allCourses');
