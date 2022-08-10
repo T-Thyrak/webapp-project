@@ -19,7 +19,7 @@ Route::get('/welcome', function () {
 });
 
 Auth::routes();
-
+// Here is the Test route for CRUD Course
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -29,3 +29,4 @@ Route::get('/courses/{course:slug}/{lesson:slug?}', [App\Http\Controllers\Course
 Route::get('/courses', function(){
     return view('courses.allCourse');
 })->name('course.allCourses');
+
