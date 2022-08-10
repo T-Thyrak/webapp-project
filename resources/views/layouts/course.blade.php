@@ -128,7 +128,7 @@
                                 @elseif ($lesson->type == 'quiz')
                                     <i class="icon fa-solid fa-clipboard-list"></i>
                                 @elseif ($lesson->type == 'course_final')
-                                    <i class="icon fa-solid fa-certificate"></i>
+                                    <i class="icon fa-solid fa-flag"></i>
                                 @endif
 
                                 <div class="details">
@@ -151,7 +151,7 @@
                                 <div class="details">
                                     <a class="title nav-link" href="javascript:syncMedalWrapper()">Click to sync your medal!</a>
                                 </div>
-                                <p>Thank you for completing the course about <b>{{ $lesson->title }}</b>!</p>
+                                <p>Thank you for completing the course about <b>{{ $course->name }}</b>!</p>
                             @else
                                 <i class="icon fa-solid fa-certificate inactive"></i>
                                 <div class="details">
