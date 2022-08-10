@@ -53,8 +53,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                                href="{{ route('course.allCourses') }}">Course</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url('/courses') }}">Course</a>
                             {{-- dropdown:courses --}}
                             {{-- <div class="dropdown">
                                 <a class="nav-link dropdown-toggle" type="button" id="dropdownMenuButton"

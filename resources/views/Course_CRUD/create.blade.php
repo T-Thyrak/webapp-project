@@ -13,23 +13,27 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Add Course with Image
-                            <a href="{{ url('/allCourse') }}" class="btn btn-danger float-end">BACK</a>
+                            <a href="{{ url('/crud_course') }}" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('add-course') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('add-course-item') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-3">
-                                <label for="">Course title</label>
-                                <input type="text" class="form-control" name="title">
+                                <label for="name">Course name</label>
+                                <input type="text" class="form-control" name="name">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Course description</label>
+                                <label for="description">Course description</label>
                                 <input type="text" class="form-control" name="description">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Course image</label>
+                                <label for="image">Course image</label>
                                 <input type="file" class="form-control" name="image">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="slug">Course slug</label>
+                                <input type="text" class="form-control" name="slug">
                             </div>
                             <div class="form-group mb-3">
                                 <button type="submit" class="btn btn-primary">
