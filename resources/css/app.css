@@ -1,3 +1,5 @@
+
+
 * {
     font-family: 'Nunito', 'Comfortaa', 'Ibarra Real Nova', sans-serif;
 }
@@ -5,4 +7,16 @@
 .mx-10 {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 1px solid red;
+}
+.container{
+    border: 1px solid red;
+}
+.hello{
+    border: 1px solid red;
 }

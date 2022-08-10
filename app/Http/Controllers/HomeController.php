@@ -40,6 +40,6 @@ class HomeController extends Controller
         }
         // get object courses that are in the medals table
 
-        return view('home', compact('ratio', 'amedals'));
+        return view('home', compact('courses', 'ratio', 'amedals'));
     }
 }
