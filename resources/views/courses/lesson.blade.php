@@ -1,6 +1,6 @@
 @extends('layouts.lesson')
 
-@section('content')
+@section('lesson-content')
     @if ($lesson->type == 'text')
     @php
         $curl = curl_init();
@@ -143,7 +143,7 @@
                         </form>
                     @else
                         <form>
-                            <textarea name="question{{$i}}" id="question{{$i}}-s" cols="30" rows="10"></textarea>
+                            <textarea name="question{{$i}}" id="question{{$i}}-s" cols="70" rows="5"></textarea>
                         </form>
                     @endif
                 </div>
@@ -285,7 +285,7 @@
                         </form>
                     @else
                         <form>
-                            <textarea name="question{{$i}}" id="question{{$i}}-s" cols="30" rows="10"></textarea>
+                            <textarea name="question{{$i}}" id="question{{$i}}-s" cols="70" rows="5"></textarea>
                         </form>
                     @endif
                 </div>
