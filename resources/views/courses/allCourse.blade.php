@@ -19,7 +19,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $item->name }}</h5>
                                 <p class="card-text">{{ $item->description }}</p>
-                                <a href="#" class="btn btn-primary">Start Now</a>
+                                <a href="./courses/{{ $item->slug }}" class="btn btn-primary">Start Now</a>
                             </div>
 
                         </div>
