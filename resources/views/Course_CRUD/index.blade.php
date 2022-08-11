@@ -36,8 +36,9 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>
-                                            <img src="{{ asset('uploads/course_images/' . $item->image) }}" alt="Image"
-                                                width="70px" height="70px">
+                                            {{-- <img src="{{ asset('uploads/course_images/' . $item->image) }}" alt="Image"
+                                                width="70px" height="70px"> --}}
+                                                <img src="{{ $item->image }}" alt="{{ $item->title }}" width="64px" height="64px">
                                         </td>
                                         <td>{{ $item->slug }}</td>
                                         <td>

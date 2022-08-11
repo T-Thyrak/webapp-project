@@ -96,6 +96,11 @@
                                     <a href="{{ route('home') }}" class="dropdown-item">
                                         {{ __('Dashboard') }}
                                     </a>
+                                    @if (Auth::user()->is_lecturer)
+                                        <a href="{{ route('crud_course') }}" class="dropdown-item">
+                                            {{ __('Course Management') }}
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

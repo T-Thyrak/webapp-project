@@ -33,7 +33,7 @@
                             <div class="form-group mb-3">
                                 <label for="">Course image</label>
                                 <input type="file" class="form-control" name="image">
-                                <img src="{{ asset('uploads/course_images/' . $course->image) }}" alt="Image"
+                                <img src="{{ asset($course->image) }}" alt="Image"
                                     width="70px" height="70px">
                             </div>
                             <div class="form-group mb-3">

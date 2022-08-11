@@ -41,7 +41,7 @@ Route::put('/update-course/{id}',[AllCourseController::class, 'update']);
 Route::get('/delete-course/{id}',[AllCourseController::class, 'destroy']);
 
 //Route project CRDU
-Route::get('/crud_course', [CourseController::class, 'index']);
+Route::get('/crud_course', [CourseController::class, 'index'])->name('crud_course');
 Route::get('/add-course-item', [CourseController::class, 'create']);
 Route::post('/add-course-item',[CourseController::class, 'store']);
 Route::get('/edit-course-item/{id}',[CourseController::class, 'edit']);

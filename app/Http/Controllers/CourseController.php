@@ -12,61 +12,81 @@ use Illuminate\Support\Facades\File;
 class CourseController extends Controller
 {
     public function index(){
+        if (auth()->user()->is_lecturer !== 1) {
+            return redirect('/');
+        }
         $courses = Course::all();
         return view('Course_CRUD.index', compact('courses'));
     }
     public function create(){
+        if (auth()->user()->is_lecturer !== 1) {
+            return redirect('/');
+        }
         return view('Course_CRUD.create');
     }
     public function store(Request $request){
+        if (auth()->user()->is_lecturer !== 1) {
+            return redirect('/');
+        }
         $course = new Course;
         $course->name = $request->input('name');
         $course->description = $request->input('description');
         $course->slug = $request->input('slug');
         if(!isset($course->slug)){
-            $course->slug = 'N/A';
+            // $course->slug = 'N/A';
+
+            $course->slug = CourseController::str_slug($course->name);
         }
         if($request->hasfile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
+            $filename = CourseController::str_full_or_max($course->slug, 20).time().'.'.$extension;
             $file->move('uploads/course_images/', $filename);
-            $course->image = $filename;
+            $course->image = 'uploads/course_images/'.$filename;
         }
 
         $course->save();
         return redirect()->back()->with('status', 'Course Image Added Successfully');
     }
     public function edit($id){
+        if (auth()->user()->is_lecturer !== 1) {
+            return redirect('/');
+        }
         $course = Course::find($id);
         return view('Course_CRUD.edit', compact('course'));
     }
     public function update(Request $request, $id){
+        if (auth()->user()->is_lecturer !== 1) {
+            return redirect('/');
+        }
         $course = Course::find($id);
         $course->name = $request->input('name');
         $course->description = $request->input('description');
         $course->slug = $request->input('slug');
         if(!isset($course->slug)){
-            $course->slug = 'N/A';
+            $course->slug = CourseController::str_slug($course->name);
         }
         if($request->hasfile('image')){
-            $destination = 'uploads/course_images/'.$course->image;
+            $destination = $course->image;
             if(File::exists($destination)){
                 File::delete($destination);
             }
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
+            $filename = CourseController::str_full_or_max($course->slug, 20).time().'.'.$extension;
             $file->move('uploads/course_images/', $filename);
-            $course->image = $filename;
+            $course->image = 'uploads/course_images/'.$filename;
         }
 
         $course->update();
         return redirect()->back()->with('status', 'Course Image Updated Successfully');
     }
     public function destroy($id){
+        if (auth()->user()->is_lecturer !== 1) {
+            return redirect('/');
+        }
         $course = Course::find($id);
-        $destination  = 'uploads/course_images/'.$course->image;
+        $destination  = $course->image;
         if(File::exists($destination)){
             File::delete($destination);
         }
@@ -116,5 +136,19 @@ class CourseController extends Controller
 
             return view('courses.show', compact('allCompleted', 'courses', 'course', 'lessons'));
         }
+    }
+
+    static private function str_slug($str) {
+        $str = strtolower(trim($str));
+        $str = preg_replace('/[^a-z0-9-]/', '-', $str);
+        $str = preg_replace('/-+/', "-", $str);
+        return $str;
+    }
+
+    static private function str_full_or_max(string $slug, int $max) {
+        if (strlen($slug) > $max) {
+            return substr($slug, 0, $max);
+        }
+        return $slug;
     }
 }

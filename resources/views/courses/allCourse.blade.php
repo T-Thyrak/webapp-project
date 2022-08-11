@@ -12,11 +12,11 @@
                     <div class="card">
                         <div class="grid-item">
                             <div class="img-container">
-                                <img class="card-img-top " src="{{ asset('uploads/course_images/' . $item->image) }}"
+                                <img class="card-img-top " src="{{ asset($item->image) }}"
                                     alt="Card image cap">
                             </div>
 
-                            <div class="card-body ">
+                            <div class="card-body">
                                 <h5 class="card-title">{{ $item->name }}</h5>
                                 <p class="card-text">{{ $item->description }}</p>
                                 <a href="#" class="btn btn-primary">Start Now</a>
