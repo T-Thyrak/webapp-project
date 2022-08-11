@@ -33,7 +33,7 @@
                                 @foreach ($courses as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>
                                             {{-- <img src="{{ asset('uploads/course_images/' . $item->image) }}" alt="Image"
