@@ -9,9 +9,6 @@ use App\Models\Courses;
 class AllCourseController extends Controller
 {
     public function index(){
-        if (auth()->user()->is_lecturer !== 1) {
-            return redirect('/');
-        }
         $courses = Courses::all();
         return view('allCouse.index', compact('courses'));
     }
