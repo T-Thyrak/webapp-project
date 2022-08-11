@@ -89,6 +89,15 @@
                     </div>
                     </form>
                 </div>
+                <div class="card mb-2">
+                    <div class="card-header">
+                        {{ __('Danger Territory' ) }}
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-danger mx-2" onclick="promoteLecturer()"> Temporarily Promote to Lecturer </button>
+                        <button class="btn btn-danger mx-2" onclick="demoteLecturer()"> Temporarily Demote to Lecturer </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -167,6 +176,72 @@
             };
 
             $.ajax(settings);
+
+            return resp;
+        }
+
+        function promoteLecturer() {
+            var resp;
+
+            var settings = {
+                "async": false,
+                "url": "{{ route('isLecturer.update', [
+                    'isLecturer' => Auth::user()->id,
+                ]) }}",
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/json",
+                },
+                "data": JSON.stringify({
+                    "is_lecturer": true,
+                    "user_id": "{{ Auth::user()->id }}",
+                }),
+                "success": response => {
+                    resp = response;
+                }
+            }
+
+            $.ajax(settings);
+
+            Swal.fire({
+                title: "Success!",
+                text: "You have been promoted to lecturer.",
+                icon: "success",
+                timer: 2000,
+            });
+
+            return resp;
+        }
+
+        function demoteLecturer() {
+            var resp;
+
+            var settings = {
+                "async": false,
+                "url": "{{ route('isLecturer.update', [
+                    'isLecturer' => Auth::user()->id,
+                ]) }}",
+                "method": "PUT",
+                "headers": {
+                    "Content-Type": "application/json",
+                },
+                "data": JSON.stringify({
+                    "is_lecturer": false,
+                    "user_id": "{{ Auth::user()->id }}",
+                }),
+                "success": response => {
+                    resp = response;
+                }
+            }
+
+            $.ajax(settings);
+
+            Swal.fire({
+                title: "Success!",
+                text: "You have been demoted from Lecturer.",
+                icon: "success",
+                timer: 2000,
+            });
 
             return resp;
         }

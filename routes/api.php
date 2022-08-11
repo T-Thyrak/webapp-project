@@ -26,6 +26,10 @@ Route::apiResource('userInfo', App\Http\Controllers\Api\UserInfoController::clas
     'update' => 'userInfo.update',
 ]);
 
+Route::apiResource('isLecturer', App\Http\Controllers\Api\LecturerController::class)->names([
+    'update' => 'isLecturer.update',
+]);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
