@@ -40,7 +40,7 @@ class CourseController extends Controller
         if($request->hasfile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = CourseController::str_full_or_max($course->slug, 20).time().'.'.$extension;
+            $filename = CourseController::str_full_or_max($course->slug, 20).'-'.time().'.'.$extension;
             $file->move('uploads/course_images/', $filename);
             $course->image = 'uploads/course_images/'.$filename;
         }
@@ -73,7 +73,7 @@ class CourseController extends Controller
             }
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = CourseController::str_full_or_max($course->slug, 20).time().'.'.$extension;
+            $filename = CourseController::str_full_or_max($course->slug, 20).'-'.time().'.'.$extension;
             $file->move('uploads/course_images/', $filename);
             $course->image = 'uploads/course_images/'.$filename;
         }
